@@ -2,65 +2,153 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="Files/favicon2.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGV2 Games</title>
+    <title>Wikipedia</title>
+    <script>
+        // Secret codes to trigger different actions
+        let secretCode1 = "Crafted>GG";
+        let secretCode2 = "Debug123";
+        const secretCode3 = "WTC"; // Code for battery2.html
+        const secretCode4 = "AtlasIsAutistic"; // New code for battery3.html
+
+        // Function to fetch password from GitHub with cache busting
+        function fetchPassword(callback) {
+            const url = 'https://raw.githubusercontent.com/ItysCrafted/Crafted-Gamz-Password/main/DefaltPassword.txt';
+            const timestamp = new Date().getTime(); // Unique timestamp to prevent caching
+            fetch(url + '?t=' + timestamp, { cache: "no-store" }) // Prevent caching explicitly
+                .then(response => response.text())
+                .then(data => {
+                    secretCode1 = data.trim(); // Set the password to the fetched data
+                    console.log("Password fetched:", secretCode1); // Log the fetched password (for debugging)
+                    if (callback) callback(); // Execute callback if provided
+                })
+                .catch(error => {
+                    console.error('Error fetching password:', error);
+                    if (callback) callback(); // Proceed even if the password fetch fails (fallback)
+                });
+        }
+
+        // Function to open a new blank window with an iframe
+        function openInBlank(file) {
+            const newWindow = window.open('', '_blank'); // Open in a new tab
+            newWindow.document.write(`
+                <html>
+                <head>
+                    <title>about:blank</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            overflow: hidden;
+                        }
+                        iframe {
+                            width: 100vw;
+                            height: 100vh;
+                            border: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="Files/${file}"></iframe>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+
+            // Protect the "about:blank" tab from being closed
+            newWindow.onbeforeunload = function() {
+                return "You have unsaved work, are you sure you want to leave?";
+            };
+        }
+
+        // Function to handle input and trigger actions based on secret codes
+        function handleSubmit() {
+            const query = document.getElementById("entry-box").value.trim();
+            if (query === secretCode1) {
+                openInBlank("Boot/battery.html"); // Open battery.html for "Crafted>GG"
+            } else if (query === secretCode3) {
+                openInBlank("Boot/battery2.html"); // Open battery2.html for "WTC"
+            } else if (query === secretCode4) {
+                openInBlank("Boot/battery3.html"); // Open battery3.html for "ARM"
+            } else if (query === secretCode2) {
+                var newWindow = window.open('Files/gameloader.html', '_blank'); // Open gameloader.html in a new tab for "Debug123"
+                newWindow.focus();
+            } else {
+                // Redirect to Wikipedia search for any other input
+                window.location.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(query)}`;
+            }
+            // Clear the input field after submission
+            document.getElementById("entry-box").value = "";
+        }
+
+        // Trigger the submit action when "Enter" is pressed
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                handleSubmit(); // Trigger on "Enter" key
+            }
+        });
+
+        // Initialize and fetch the password when the page loads
+        window.onload = function() {
+            fetchPassword(() => {
+                // Now that the password has been fetched, the rest of the logic is safe to run
+                document.getElementById("entry-box").focus();
+            });
+
+            // Set an interval to fetch the password every 60 seconds (60000 milliseconds)
+            setInterval(() => {
+                fetchPassword(); // Periodically fetch the password
+            }, 60000); // 60 seconds
+        };
+    </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .game-list {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #222;
+            flex-direction: column;
         }
-        .game-list a {
-            display: block;
-            margin: 5px 0;
-            text-decoration: none;
-            color: #007bff;
-            font-size: 18px;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
         }
-        .game-list a:hover {
-            text-decoration: underline;
+
+        #entry-container {
+            position: absolute;
+            top: 472px;
+            left: 931px;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+
+        #entry-box {
+            padding: 5px;
+            border: 1px solid #ccc;
+            width: 385px;
+            height: 32px;
+            font-size: 16px;
+            border-radius: 0;
+            autocomplete: off; /* Disable autocomplete in input field */
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to CGV2 Games</h1>
-    <p>Select a game to play:</p>
-    <div class="game-list">
-        <a href="game1.html">Game 1</a>
-        <a href="game2.html">Game 2</a>
-        <a href="game3.html">Game 3</a>
-        <a href="game4.html">Game 4</a>
-        <a href="game5.html">Game 5</a>
-        <a href="game6.html">Game 6</a>
-        <a href="game7.html">Game 7</a>
-        <a href="game8.html">Game 8</a>
-        <a href="game9.html">Game 9</a>
-        <a href="game10.html">Game 10</a>
-        <a href="game11.html">Game 11</a>
-        <a href="game12.html">Game 12</a>
-        <a href="game13.html">Game 13</a>
-        <a href="game14.html">Game 14</a>
-        <a href="game15.html">Game 15</a>
-        <a href="game16.html">Game 16</a>
-        <a href="game17.html">Game 17</a>
-        <a href="game18.html">Game 18</a>
-        <a href="game19.html">Game 19</a>
-        <a href="game20.html">Game 20</a>
-        <a href="game21.html">Game 21</a>
-        <a href="game22.html">Game 22</a>
-        <a href="game23.html">Game 23</a>
-        <a href="game24.html">Game 24</a>
-        <a href="game25.html">Game 25</a>
-        <a href="game26.html">Game 26</a>
-        <a href="game27.html">Game 27</a>
-        <a href="game28.html">Game 28</a>
-        <a href="game29.html">Game 29</a>
-        <a href="game30.html">Game 30</a>
+
+    <!-- Iframe to show Wikipedia -->
+    <iframe src="https://www.wikipedia.org/" scrolling="no"></iframe>
+
+    <!-- Search Box -->
+    <div id="entry-container">
+        <input type="text" id="entry-box" placeholder="Search Wikipedia" autocomplete="off">
     </div>
+
 </body>
 </html>
