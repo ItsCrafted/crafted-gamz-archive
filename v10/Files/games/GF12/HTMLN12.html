@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <style>
         .sbody {
@@ -20,6 +21,7 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             width: 90%;
             max-width: 500px;
+            margin: auto; /* Ensures horizontal centering */
         }
         h1 {
             font-size: 2em;
@@ -77,111 +79,109 @@
             color: #ffffff;
         }
     </style>
-  <link rel="icon" type="image/x-icon" href="favicon.png">
-  <link rel="stylesheet" type="text/css" href="../../styles.css">
-  <script src="../../settingicon.js"></script>
-  <link rel="manifest" href="../../mainfest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="../../styles.css">
+    <script src="../../settingicon.js"></script>
+    <link rel="manifest" href="../../mainfest.json">
 </head>
-<body>
-  <div class="navbar">
-    <a href="games/GF35/HTMLN35.html" class="navbar-item">Minecraft Version Selector 🛜</a>
-    <a href="../../gameloader.html" class="navbar-item">Go Back</a>
-     <a href="games/GF32/HTMLN32.html" class="navbar-item">Movies And TV🛜</a>
-      <a href="games/GF33/HTMLN33.html" class="navbar-item">Miscellaneous</a>
-    <a href="Settings/index.html" class="navbar-item"><i class="fas fa-cog"></i></a>
-  </div>
+<body class="sbody">
+    <div class="navbar">
+        <a href="../GF35/HTMLN35.html" class="navbar-item">Minecraft Version Selector 🛜</a>
+        <a href="../GF29/HTMLN29.html" class="navbar-item">Javascript Racer Level Selector</a>
+        <a href="../../gameloader.html" class="navbar-item">Back To Main Page</a>
+         <a href="../GF32/HTMLN32.html" class="navbar-item">Movies And TV🛜</a>
+          <a href="../GF33/HTMLN33.html" class="navbar-item">Miscellaneous</a>
+        <a href="../../Settings/index.html" class="navbar-item"><i class="fas fa-cog"></i></a>
+      </div>
 
-  <div class="container">
-    <h1>Crafted Gamz Time Center</h1>
-    <div class="clock" id="clock"></div>
-    <div>
-        <label for="timeFormat">Time Format: </label>
-        <select id="timeFormat" onchange="updateClock()">
-            <option value="12">12-Hour</option>
-            <option value="24" selected>24-Hour</option>
-        </select>
+    <div class="container">
+        <h1>Crafted Gamz Time Center</h1>
+        <div class="clock" id="clock"></div>
+        <div>
+            <label for="timeFormat">Time Format: </label>
+            <select id="timeFormat" onchange="updateClock()">
+                <option value="12">12-Hour</option>
+                <option value="24" selected>24-Hour</option>
+            </select>
+        </div>
+        <div class="offset-input">
+            <label for="offset">Offset (min:sec): </label>
+            <input type="text" id="offset" placeholder="0:00">
+            <button onclick="applyOffset()">Apply Offset</button>
+        </div>
+        <div id="scheduleType"></div>
+        <div class="period-info" id="periodInfo"></div>
     </div>
-    <div class="offset-input">
-        <label for="offset">Offset (min:sec): </label>
-        <input type="text" id="offset" placeholder="0:00">
-        <button onclick="applyOffset()">Apply Offset</button>
-    </div>
-    <div id="scheduleType"></div>
-    <div class="period-info" id="periodInfo"></div>
-</div>
 
-<script>
-    let timeOffset = 0;
+    <script>
+        let timeOffset = 0;
 
-    function updateClock() {
-        const now = new Date(new Date().getTime() + timeOffset * 1000);
-        const timeFormat = document.getElementById('timeFormat').value;
-        const formattedTime = now.toLocaleTimeString('en-US', { hour12: timeFormat === '12' });
-        const formattedDate = now.toLocaleDateString('en-US', {
-            month: 'long', day: 'numeric', year: 'numeric'
-        });
-        document.getElementById('clock').textContent = `${formattedDate} ${formattedTime}`;
-        updateScheduleType(now);
-        updatePeriodInfo(now);
-    }
-
-    function applyOffset() {
-        const offsetInput = document.getElementById('offset').value;
-        const parts = offsetInput.split(':');
-        const minutes = parseInt(parts[0]) || 0;
-        const seconds = parseInt(parts[1]) || 0;
-        timeOffset = minutes * 60 + seconds;
-    }
-
-    function updateScheduleType(now) {
-        const day = now.getDay();
-        const isAdvisory = (day === 1 || day === 4);
-        document.getElementById('scheduleType').textContent = isAdvisory ? 'Current Schedule: Advisory' : 'Current Schedule: Normal';
-    }
-
-    function updatePeriodInfo(now) {
-        const currentTime = now.toTimeString().substring(0, 5);
-        let periodInfo = 'No active period';
-
-        if (currentTime >= '14:50') {
-            periodInfo = 'School day over';
+        function updateClock() {
+            const now = new Date(new Date().getTime() + timeOffset * 1000);
+            const timeFormat = document.getElementById('timeFormat').value;
+            const formattedTime = now.toLocaleTimeString('en-US', { hour12: timeFormat === '12' });
+            const formattedDate = now.toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+            });
+            document.getElementById('clock').textContent = `${formattedDate} ${formattedTime}`;
+            updateScheduleType(now);
+            updatePeriodInfo(now);
         }
 
-        document.getElementById('periodInfo').textContent = periodInfo;
-    }
+        function applyOffset() {
+            const offsetInput = document.getElementById('offset').value;
+            const parts = offsetInput.split(':');
+            const minutes = parseInt(parts[0]) || 0;
+            const seconds = parseInt(parts[1]) || 0;
+            timeOffset = minutes * 60 + seconds;
+        }
 
-    setInterval(updateClock, 1000);
-</script>
+        function updateScheduleType(now) {
+            const day = now.getDay();
+            const isAdvisory = (day === 1 || day === 4);
+            document.getElementById('scheduleType').textContent = isAdvisory ? 'Current Schedule: Advisory' : 'Current Schedule: Normal';
+        }
 
-  <script src="../../Settings/theme-switcher.js"></script>
-  <script src="../../attbswitch.js"></script>
-  <script src="../../script.js"></script>
-  <script> </script>
+        function updatePeriodInfo(now) {
+            const currentTime = now.toTimeString().substring(0, 5);
+            let periodInfo = 'No active period';
 
-  <script>
-    // Load settings from localStorage
-    const redirectUrl = localStorage.getItem("panicRedirectUrl") || "https://www.wikipedia.org";
-    const keyCode = parseInt(localStorage.getItem("panicKeyCode"), 10) || 27;
+            if (currentTime >= '14:50') {
+                periodInfo = 'School day over';
+            }
 
-    // Panic action function
-    function triggerPanic() {
-      // Open the redirect URL
-      // Replace the current page
-      window.location.replace(redirectUrl);
-    }
+            document.getElementById('periodInfo').textContent = periodInfo;
+        }
 
-    // Add event listener for the hotkey (keydown event)
-    document.addEventListener("keydown", function(event) {
-      if (event.keyCode === keyCode) {
-        triggerPanic();
-      }
-    });
+        setInterval(updateClock, 1000);
+    </script>
 
-    // Optional: Allow click on the Panic Button to trigger the same action
-    document.getElementById("panic-button").addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent default link behavior
-      triggerPanic();
-    });
-  </script>
+    <script src="../../Settings/theme-switcher.js"></script>
+    <script src="../../attbswitch.js"></script>
+    <script src="../../script.js"></script>
+
+    <script>
+        // Load settings from localStorage
+        const redirectUrl = localStorage.getItem("panicRedirectUrl") || "https://www.wikipedia.org";
+        const keyCode = parseInt(localStorage.getItem("panicKeyCode"), 10) || 27;
+
+        // Panic action function
+        function triggerPanic() {
+            window.location.replace(redirectUrl);
+        }
+
+        // Add event listener for the hotkey (keydown event)
+        document.addEventListener("keydown", function(event) {
+            if (event.keyCode === keyCode) {
+                triggerPanic();
+            }
+        });
+
+        // Optional: Allow click on the Panic Button to trigger the same action
+        document.getElementById("panic-button")?.addEventListener("click", function(event) {
+            event.preventDefault();
+            triggerPanic();
+        });
+    </script>
 </body>
 </html>
