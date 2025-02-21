@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crafted Gamz</title>
+    <title>Password Protected Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,49 +22,67 @@
             font-size: 1.3em;
             margin-bottom: 30px;
         }
-        .game-list {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-        .game-list a {
-            display: block;
-            width: 280px;
-            padding: 15px;
-            text-decoration: none;
-            color: #ffffff;
-            background: linear-gradient(135deg, #007bff, #00d4ff);
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            border-radius: 10px;
-            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 122, 255, 0.5);
-        }
-        .game-list a:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #00d4ff, #007bff);
-            box-shadow: 0 6px 15px rgba(0, 122, 255, 0.8);
-        }
         .container {
-            max-width: 600px;
+            max-width: 400px;
             margin: 0 auto;
             padding: 20px;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
         }
+        input {
+            width: 80%;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            background: #222;
+            color: #fff;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 122, 255, 0.8);
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #007bff, #00d4ff);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #00d4ff, #007bff);
+            box-shadow: 0 6px 15px rgba(0, 122, 255, 0.8);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Crafted Gamz</h1>
-        <p>Select What You Wish:</p>
-        <div class="game-list">
-            <a href="index3.html">Older Versions</a>
-            <a href="version-10/index.html">Latest Update (v10)</a>
-        </div>
+        <h1>Welcome To Crafted Gamz</h1>
+        <p>Please enter the correct password to continue:</p>
+        <input type="password" id="password" placeholder="Enter password">
+        <br>
+        <button onclick="checkPassword()">Submit</button>
     </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("password").value;
+            if (password === "Crafted>GG") {
+                window.location.href = "index2.html";
+            } else {
+                alert("Incorrect password. Try again.");
+            }
+        }
+    </script>
 </body>
 </html>
