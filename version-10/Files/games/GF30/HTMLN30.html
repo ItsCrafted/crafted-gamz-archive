@@ -1,97 +1,111 @@
 <!DOCTYPE html>
-<html>
-
-<!-- Mirrored from flappy-2048.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Feb 2025 05:20:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Flappy 2048</title>
-<link rel="canonical" href="index.html" />
-<link href="style/main.css" rel="stylesheet" type="text/css">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
-<style type="text/css" media="all">
-.left {
-	float: left;
-	font-size: 12px;
-	margin-bottom: 10px;
-}
-.right {
-	float: right;
-}
-@media screen and (max-height: 820px) {
-	.left {
-		width: 70%;
-	}
-	.right {
-		width: 30%;
-	}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crafted Gamz</title>
+  <script>
+    // Load settings from localStorage
+    const redirectUrl = localStorage.getItem("panicRedirectUrl") || "https://www.wikipedia.org";
+    const keyCode = parseInt(localStorage.getItem("panicKeyCode"), 10) || 27;
+
+    // Panic action function
+    function triggerPanic() {
+      // Open the redirect URL
+      // Replace the current page
+      window.location.replace(redirectUrl);
+    }
+
+    // Add event listener for the hotkey (keydown event)
+    document.addEventListener("keydown", function(event) {
+      if (event.keyCode === keyCode) {
+        triggerPanic();
+      }
+    });
+
+    // Optional: Allow click on the Panic Button to trigger the same action
+    document.getElementById("panic-button").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent default link behavior
+      triggerPanic();
+    });
+  </script>
+  <style>
+    /* Style for the buttons container */
+    .button-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background-color: #333;
+      z-index: 100;
+    }
+
+    /* Style for individual buttons */
+    .button {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 25px; /* Rounded corners */
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    /* iframe styling */
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      overflow: hidden; /* Hide both horizontal and vertical scrollbars */
+    }
+
+    /* To prevent the body from having extra space, we hide overflow */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-      <div class="heading">
-      <h1 class="title">Flappy 2048</h1>
-      <div class="scores-container">
-        <div class="score-container">0</div>
-        <div class="best-container">0</div>
-      </div>
-    </div>
-    <div class="game-container">
-      <div class="game-message">
-        <p></p>
-        <div class="lower">
-	        <a class="keep-playing-button">Keep going</a>
-          <a class="retry-button">Try again</a>
-        </div>
-      </div>
+  <!-- Bottom button container -->
+  <div class="button-container">
+    <button class="button" onclick="location.reload()">Reload</button>
+    <button class="button" onclick="window.location.href='../../gameloader.html'">Go Back To Main Page</button>
+    <button class="button" onclick="toggleFullScreen()">Fullscreen</button>
+  </div>
 
-      <div class="grid-container">
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="tile tile-block-a"><div class="tile-inner"></div></div>
-        <div class="tile tile-block-b"><div class="tile-inner"></div></div>
-        <div class="tile tile-block-c"><div class="tile-inner"></div></div>
-        <div class="tile tile-block-d"><div class="tile-inner"></div></div>
-        <div class="tile tile-bird"><div class="tile-inner"></div></div>
-      </div>
-    </div>
-  <script src="js/animframe_polyfill.js"></script>
-  <script src="js/keyboard_input_manager.js"></script>
-  <script src="js/html_actuator.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/tile.js"></script>
-  <script src="js/local_score_manager.js"></script>
-  <script src="js/game_manager.js"></script>
-  <script src="js/application.js"></script>
+  <!-- iframe that loads the website -->
+  <iframe src="HTMLN30.5.html" id="myIframe"></iframe>
+
+  <script>
+    // Function to toggle fullscreen
+    function toggleFullScreen() {
+      var iframe = document.getElementById("myIframe");
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.mozRequestFullScreen) { // Firefox
+        iframe.mozRequestFullScreen();
+      } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.msRequestFullscreen) { // IE/Edge
+        iframe.msRequestFullscreen();
+      }
+    }
+  </script>
 </body>
-
-<!-- Mirrored from flappy-2048.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Feb 2025 05:20:49 GMT -->
 </html>
