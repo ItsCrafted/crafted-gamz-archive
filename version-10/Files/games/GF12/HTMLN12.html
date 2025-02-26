@@ -95,72 +95,11 @@
       </div>
 
     <div class="container">
-        <h1>Crafted Gamz Time Center</h1>
-        <div class="clock" id="clock"></div>
-        <div>
-            <label for="timeFormat">Time Format: </label>
-            <select id="timeFormat" onchange="updateClock()">
-                <option value="12">12-Hour</option>
-                <option value="24" selected>24-Hour</option>
-            </select>
-        </div>
-        <div class="offset-input">
-            <label for="offset">Offset (min:sec): </label>
-            <input type="text" id="offset" placeholder="0:00">
-            <button onclick="applyOffset()">Apply Offset</button>
-        </div>
-        <div id="scheduleType"></div>
-        <div class="period-info" id="periodInfo"></div>
+        <h1>Crafted Gamz Link Archive</h1>
+
+
     </div>
-
-    <script>
-        let timeOffset = 0;
-
-        function updateClock() {
-            const now = new Date(new Date().getTime() + timeOffset * 1000);
-            const timeFormat = document.getElementById('timeFormat').value;
-            const formattedTime = now.toLocaleTimeString('en-US', { hour12: timeFormat === '12' });
-            const formattedDate = now.toLocaleDateString('en-US', {
-                month: 'long', day: 'numeric', year: 'numeric'
-            });
-            document.getElementById('clock').textContent = `${formattedDate} ${formattedTime}`;
-            updateScheduleType(now);
-            updatePeriodInfo(now);
-        }
-
-        function applyOffset() {
-            const offsetInput = document.getElementById('offset').value;
-            const parts = offsetInput.split(':');
-            const minutes = parseInt(parts[0]) || 0;
-            const seconds = parseInt(parts[1]) || 0;
-            timeOffset = minutes * 60 + seconds;
-        }
-
-        function updateScheduleType(now) {
-            const day = now.getDay();
-            const isAdvisory = (day === 1 || day === 4);
-            document.getElementById('scheduleType').textContent = isAdvisory ? 'Current Schedule: Advisory' : 'Current Schedule: Normal';
-        }
-
-        function updatePeriodInfo(now) {
-            const currentTime = now.toTimeString().substring(0, 5);
-            let periodInfo = 'No active period';
-
-            if (currentTime >= '14:50') {
-                periodInfo = 'School day over';
-            }
-
-            document.getElementById('periodInfo').textContent = periodInfo;
-        }
-
-        setInterval(updateClock, 1000);
-    </script>
-
-    <script src="../../Settings/theme-switcher.js"></script>
-    <script src="../../attbswitch.js"></script>
-    <script src="../../script.js"></script>
-
-    <script>
+<script>
         // Load settings from localStorage
         const redirectUrl = localStorage.getItem("panicRedirectUrl") || "https://www.wikipedia.org";
         const keyCode = parseInt(localStorage.getItem("panicKeyCode"), 10) || 27;
