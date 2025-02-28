@@ -125,7 +125,40 @@ h1 {
   color: #f5f5f5;
 }
 
-/* Sunset Theme */
+/* Cat Theme */
+.cat {
+  background-image: url('themes/thousandyardtheme.jpg'); /* Updated path */
+  background-size: cover;
+  background-position: center;
+  color: rgb(177, 121, 0);
+}
+
+.cat .navbar {
+  background-color: #9e3d06f6;
+  color: rgb(7, 7, 7);
+}
+
+.cat .navbar-item {
+  color: rgb(66, 27, 1);
+}
+
+/* Wilder Theme */
+.wild {
+  background-image: url('themes/wilder.jpg'); /* Updated path */
+  background-size: cover;
+  background-position: center;
+  color: rgb(177, 0, 147);
+}
+
+.wild .navbar {
+  background-color: #f50087f6;
+  color: rgb(255, 115, 225);
+}
+
+.wild .navbar-item {
+  color: rgb(0, 0, 0);
+}
+
 .sunset {
   background-image: url('themes/sunsettheme.jpg'); /* Updated path */
   background-size: cover;
