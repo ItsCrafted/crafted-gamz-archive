@@ -4,7 +4,7 @@
 
 Effective Date: 11/13/2024
 
-Welcome to **Crafted Gamz**! This document contains the Terms of Service (TOS), Privacy Policy (PP), Content Policy, and Google Unblxcked Service Policy for your use and reference. By using the Crafted Gamz platform, you agree to abide by the following terms, conditions, and policies. Please read them carefully to understand your rights and responsibilities. If you disagree with any part of these, please refrain from using the platform.
+Welcome to **Crafted Gamz**! This document contains the Terms of Service (TOS), Privacy Policy (PP), and Content Policy for your use and reference. By using the Crafted Gamz platform, you agree to abide by the following terms, conditions, and policies. Please read them carefully to understand your rights and responsibilities. If you disagree with any part of these, please refrain from using the platform.
 
 ────────────────────────────────────────────────────────────────────
                          Terms of Service (TOS)
@@ -24,21 +24,17 @@ While using Crafted Gamz, you agree to:
 - Abide by all applicable laws and regulations.
 - Refrain from using the Game in a manner that could harm, disable, or overburden its functionality.
 - Not engage in cheating, exploiting, or unauthorized modifications to the Game.
-- Not upload, share, or distribute the Game to any file storage or sharing platforms (e.g., Google Drive, Dropbox, etc.) without explicit permission from the creators.
+- Not upload, share, or distribute the Game to any file storage or sharing platforms (e.g., Google Drive, Dropbox, HTTrack, etc.) without explicit permission from the creators.
 
-4. Termination
---------------
-We may suspend or terminate your access to Crafted Gamz if you violate any of these Terms of Service. Upon termination, you must immediately cease using the Game and delete any copies.
-
-5. Limitation of Liability
+4. Limitation of Liability
 ---------------------------
 Crafted Gamz is provided "as-is." We make no guarantees regarding the availability, security, or performance of the Game. We are not liable for any indirect, incidental, or consequential damages arising from your use of the Game.
 
-6. Updates and Changes
+5. Updates and Changes
 ----------------------
 We reserve the right to modify these Terms of Service at any time. Any changes will be posted, and by continuing to use the Game, you agree to the updated Terms.
 
-7. Contact Information
+6. Contact Information
 ----------------------
 See bottom for contact details.
 
@@ -61,11 +57,13 @@ When using Crafted Gamz, certain data may be stored on your device in the form o
 - **Cookies**: Small files stored on your device that remember user preferences and settings, keep you logged in, and help us analyze user interactions with the Game. Cookies may be session-based (deleted when you close the Game) or persistent (remaining until manually deleted or they expire).
 - **Cache**: Temporary storage that saves elements of the Game, such as images and scripts, on your device to improve load times and reduce network usage.
 
+A simplified version of this is saying that our software and the games that we host on our website store their progress and settings in your browser.
+
 You can control cookies and cache settings through your device or browser settings, though doing so may impact certain functionalities of the Game.
 
 3. Data Sharing
 ---------------
-We do not sell, rent, or share your personal information with third parties except as required by law or with trusted partners to improve the Game's functionality (e.g., analytics services).
+We do not sell, rent, or share your personal information with third parties except as required by law.+
 
 4. Changes to the Privacy Policy
 -------------------------------
@@ -96,48 +94,21 @@ Once we receive and verify your request, we will promptly remove the game from C
 See bottom for contact details.
 
 ────────────────────────────────────────────────────────────────────
-                         Google Unblxcked Service
+                         Legally Binding Clause
 ────────────────────────────────────────────────────────────────────
 
-1. Routing Through Rammerhead
-------------------------------------
-When using the "Google Unblxcked" feature on Crafted Gamz, your 
-search queries are routed through **Rammerhead** (located 
-at **https://gooogleserver-as4.macgyver.cf/**). This means that any search made through the "Google 
-Unblxcked" service is processed and routed via Rammerhead's infrastructure.
-
-2. Third-Party Service Disclaimer
----------------------------------
-While we provide the "Google Unblxcked" service, please be 
-aware that the content and search results are routed through 
-Rammerhead. We are not responsible for the content or 
-data management handled by Rammerhead, nor do we control 
-the results or how data is processed on their end.
-
-3. User Responsibility
-----------------------
-By using the "Google Unblxcked" service, you agree that you 
-are solely responsible for your search activities. Crafted Gamz 
-does not take responsibility for any consequences that may 
-arise from searching for inappropriate, harmful, or unlawful 
-content. We **strongly discourage** searching for explicit, 
-inappropriate, or 18+ content and encourage responsible use 
-in compliance with all applicable laws and guidelines.
-
-4. Contact Information
-----------------------
-See bottom for contact details.
+By accessing or using Crafted Gamz, you expressly agree to comply with and be legally bound by these Terms of Service, Privacy Policy, and Content Policy. If you do not agree to any part of these documents, you must cease using the platform immediately. Your continued use of the platform constitutes acceptance of these terms and any future updates.
 
 ────────────────────────────────────────────────────────────────────
                          Contact Information
 ────────────────────────────────────────────────────────────────────
 
-For any inquiries regarding the Terms of Service, Privacy Policy, Content Policy, or the Google Unblxcked service, please contact us at:
+For any inquiries regarding the Terms of Service, Privacy Policy, or Content Policy, please contact us at:
 
-Emails:
+Email:
 - craftedgamz@outlook.com
-- 980040746@aps.edu (school)
 
 ────────────────────────────────────────────────────────────────────
 
 © Copyright Crafted Gamz 2023-2025
+
