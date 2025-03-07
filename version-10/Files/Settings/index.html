@@ -123,6 +123,28 @@
      <h3>Key Code Description:</h3>
      <iframe src="../keycodes.txt" style="width: 90%; height: 200px; border: 1px solid #ccc;"></iframe>
   </div>
+  <script>
+    const tracks = [
+      "../tracks/track1.mp3",
+      "../tracks/track2.mp3",
+      "../tracks/track3.mp3",
+      "../tracks/track4.mp3",
+      "../tracks/track5.mp3"
+    ];
+
+    let config = JSON.parse(localStorage.getItem("musicConfig")) || { defaultTrack: 0, autoplay: false, volume: 0.5 };
+    let audio = new Audio(tracks[config.defaultTrack]);
+    audio.loop = true;
+    audio.volume = config.volume;
+
+    function startMusic() {
+      audio.play().catch(() => {
+        document.addEventListener("click", startMusic, { once: true });
+      });
+    }
+
+    startMusic();
+  </script>
 
   <script>
     // Load and save clock settings

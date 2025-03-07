@@ -80,8 +80,30 @@
             event.preventDefault();
             triggerPanic();
         });
-    </script>
+</script>
       <script src="../../Settings/theme-switcher.js"></script>
       <script src="../../attbswitchgames.js"></script>
+      <script>
+        const tracks = [
+          "../../tracks/track1.mp3",
+          "../../tracks/track2.mp3",
+          "../../tracks/track3.mp3",
+          "../../tracks/track4.mp3",
+          "../../tracks/track5.mp3"
+        ];
+    
+        let config = JSON.parse(localStorage.getItem("musicConfig")) || { defaultTrack: 0, autoplay: false, volume: 0.5 };
+        let audio = new Audio(tracks[config.defaultTrack]);
+        audio.loop = true;
+        audio.volume = config.volume;
+    
+        function startMusic() {
+          audio.play().catch(() => {
+            document.addEventListener("click", startMusic, { once: true });
+          });
+        }
+    
+        startMusic();
+</script>
 </body>
 </html>
