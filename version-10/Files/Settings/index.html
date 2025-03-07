@@ -108,6 +108,55 @@
   </div>
 
   <span style="display:block; height: 30px;"></span>
+  <div class="settings">
+    <label for="track">Select Background Music Track:</label>
+    <select id="track">
+        <option value="0">Big Flappy Tower, Tiny Square OST</option>
+        <option value="1">Celeste OST: Scatered And Lost</option>
+        <option value="2">C418: Subwoofer Lullaby</option>
+        <option value="3">LOFI Girl: 1 AM Chill Session</option>
+        <option value="4">LOFI Girl: Afternoon Jazz</option>
+    </select>
+
+    <br><br>
+
+    <label for="autoplay">Repeat Track:</label>
+    <input type="checkbox" id="autoplay">
+
+    <br><br>
+
+    <label for="volume">Volume:</label>
+    <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5">
+
+    <br><br>
+
+    <button onclick="saveConfig()">Save Settings</button>
+
+  </div>
+  <script>
+    function saveConfig() {
+        const config = {
+            defaultTrack: document.getElementById("track").value,
+            autoplay: document.getElementById("autoplay").checked,
+            volume: document.getElementById("volume").value
+        };
+        localStorage.setItem("musicConfig", JSON.stringify(config));
+        alert("Settings Saved!");
+    }
+
+    function loadConfig() {
+        const config = JSON.parse(localStorage.getItem("musicConfig"));
+        if (config) {
+            document.getElementById("track").value = config.defaultTrack;
+            document.getElementById("autoplay").checked = config.autoplay;
+            document.getElementById("volume").value = config.volume;
+        }
+    }
+
+    loadConfig();
+</script>
+
+<span style="display:block; height: 30px;"></span>
 
   <div class="settings">
     <h2>Panic Button Settings</h2>
@@ -123,6 +172,7 @@
      <h3>Key Code Description:</h3>
      <iframe src="../keycodes.txt" style="width: 90%; height: 200px; border: 1px solid #ccc;"></iframe>
   </div>
+
   <script>
     const tracks = [
       "../tracks/track1.mp3",
