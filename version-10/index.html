@@ -9,10 +9,10 @@
             const redirectValue = localStorage.getItem("redirectValue");
             
             const pages = {
-                "1": "alpha.html",
-                "2": "beta.html",
-                "3": "gamma.html",
-                "4": "delta.html"
+                "1": "Files/Boot/alpha.html",
+                "2": "Files/Boot/beta.html",
+                "3": "Files/Boot/gamma.html",
+                "4": "Files/Boot/delta.html"
             };
 
             if (redirectValue === "5") {
@@ -21,7 +21,7 @@
             } else if (pages[redirectValue]) {
                 window.location.replace(pages[redirectValue]);
             } else {
-                window.location.replace("error.html"); // Fallback page
+                window.location.replace("Files/Boot/alpha.html"); // Fallback page
             }
         });
     </script>
