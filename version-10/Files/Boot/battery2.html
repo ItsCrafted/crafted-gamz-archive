@@ -107,8 +107,13 @@
 
         // Display the battery percentage
         const updateBatteryInfo = () => {
-          const percentage = Math.round(battery.level * 100);
+          let percentage = Math.round(battery.level * 100);
           const isCharging = battery.charging ? "Yes" : "No";
+
+          // If battery is under 20% but charging, treat it as 100%
+          if (percentage < 20 && battery.charging) {
+            percentage = 100;
+          }
 
           // Update status text
           document.querySelector('.battery-status').textContent = 
@@ -121,11 +126,11 @@
 
             // Delay before redirecting
             setTimeout(() => {
-              window.location.href = "login2.html";
+              window.location.href = "login.html";
             }, 1000); // 1-second delay
-          } else if (percentage < 20 && !battery.charging) {
+          } else if (percentage < 21 && !battery.charging) {
             // Alert and show manual redirect button
-            alert("⚠️ Warning: Battery is critically low and not charging! One Chromebooks, when under 20% battery saver mode kicks in, which basiclly puts your core prosessor (CPU) on ECO Mode. This delays and laggs the games signifigantly");
+            alert("⚠️ Warning: Battery is critically low and not charging! On Chromebooks, when under 20% battery saver mode kicks in, which basically puts your core processor (CPU) on ECO Mode. This delays and lags the games significantly");
             manualRedirect.style.display = 'block';
           }
         };
