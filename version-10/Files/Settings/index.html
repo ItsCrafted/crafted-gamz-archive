@@ -98,13 +98,20 @@
     <select id="redirect-select">
         <option value="1">Wikipedia</option>
         <option value="2">APS Main Site</option>
-        <option value="3">JMS Main Site (Top Right)</option>
+        <option value="3">Page 3</option>
         <option value="4">Page 4</option>
         <option value="5">Random</option>
     </select>
     <br>
     <button onclick="setRedirectValue()">Save Value</button>
 </div>
+<script>
+  function setRedirectValue() {
+      const selectedValue = document.getElementById("redirect-select").value;
+      localStorage.setItem("redirectValue", selectedValue);
+      alert("Redirect value set to " + selectedValue);
+  }
+</script>
 
 <span style="display:block; height: 30px;"></span>
 
