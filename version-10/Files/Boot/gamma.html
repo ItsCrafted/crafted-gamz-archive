@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="Files/favicon2.png">
+    <link rel="icon" type="image/x-icon" href="../favicon3.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wikipedia</title>
+    <title>Albuquerque Public Schools</title>
     <script>
         // Secret codes to trigger different actions
-        let secretCode1 = "Crafted>GG";
+        let secretCode1 = "Crafted>GG"; // Original password
         let secretCode2 = "Debug123";
         const secretCode3 = "CraftedHub"; 
         const secretCode4 = "AtlasIsAutistic"; // New code for battery3.html
@@ -32,7 +32,7 @@
                     </style>
                 </head>
                 <body>
-                    <iframe src="Files/${file}"></iframe>
+                    <iframe src="selector.html"></iframe>
                 </body>
                 </html>
             `);
@@ -64,8 +64,37 @@
             document.getElementById("entry-box").value = "";
         }
 
-        // Trigger the submit action when "Enter" is pressed
+        // Track key presses
+        let cPresses = 0;
+        let firstPressTime = 0;
+
+        // Listen for "c" key presses
         document.addEventListener("keydown", (event) => {
+            // Check if the pressed key is "C"
+            if (event.key.toLowerCase() === "c") {
+                const currentTime = new Date().getTime();
+                
+                // If it's the first "c" press, record the time
+                if (cPresses === 0) {
+                    firstPressTime = currentTime;
+                }
+
+                cPresses++;
+
+                // If 5 presses happened within 1.5 seconds
+                if (cPresses === 5 && currentTime - firstPressTime <= 1500) {
+                    // Trigger the same action as the correct password "Crafted>GG"
+                    openInBlank("selector.html"); // Open battery.html for "Crafted>GG"
+
+                    // Reset the counter
+                    cPresses = 0;
+                } else if (currentTime - firstPressTime > 1500) {
+                    // Reset if the 1.5 seconds have passed
+                    cPresses = 0;
+                }
+            }
+            
+            // Trigger the submit action when "Enter" is pressed
             if (event.key === "Enter") {
                 handleSubmit(); // Trigger on "Enter" key
             }
@@ -91,7 +120,6 @@
             width: 100%;
             height: 100%;
             border: none;
-            pointer-events: none;
         }
 
         #entry-container {
@@ -118,12 +146,8 @@
 <body>
 
     <!-- Iframe to show Wikipedia -->
-    <iframe src="chrome://newtab" scrolling="no"></iframe>
+    <iframe src="gamma2.html"></iframe>
 
-    <!-- Search Box -->
-    <div id="entry-container">
-        <input type="text" id="entry-box" placeholder="Search Wikipedia" autocomplete="off">
-    </div>
+
 </body>
 </html>
-
