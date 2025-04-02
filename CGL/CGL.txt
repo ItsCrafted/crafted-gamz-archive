@@ -157,7 +157,7 @@
         const sectionNames = [
             "A Small World Cup", "Block Blast", "Basket Bros", "Death Run 3D", 
             "FNAF 1", "Gun Spin", "Slope 1", "Slope II", "Snow Rider 3D", 
-            "Spacebar Clicker", "Goofy A$$ Temple Run", "The Binding Of Issac", 
+            "Spacebar Clicker", "The Binding Of Issac", 
             "Tomb Of The Mask", "Core Ball", "Tanuki Sunset", "Dune"
         ];
 
