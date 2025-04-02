@@ -139,7 +139,7 @@
 
 
     <div id="localStorageStatus">
-        <h3>Explenation</h3>
+        <h3>Explanation</h3>
         <p>Crafted Gamz Lite, or CGL, is a lightweight loader that uses Local Storage to play games with no restrictions and offline. When you click "Add to local Storage", it pulls down HTML code from our Crafted Gamz servers and saves it in your local storage. When you click "run", it reads that HTML code from local storage and you can play the game. For Chromebook size restrictions, for now, you can only save two (2) games at a time.</p>
         <h4>Local Storage Status</h4>
         <div id="statusList"></div>
