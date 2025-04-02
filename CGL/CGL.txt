@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGL</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow-y: scroll;
+            text-align: center;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        #localStorageStatus {
+            margin-top: 20px;
+            background-color: #1f1f1f;
+            padding: 15px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        #devModeButton {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #333333;
+            color: #82cfff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        #devModeButton:hover {
+            background-color: #555555;
+        }
+
+        .section {
+            background-color: #1f1f1f;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .section h2 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #333333;
+            color: #82cfff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 30%;
+        }
+
+        .btn:hover {
+            background-color: #555555;
+        }
+
+        .btn:focus {
+            outline: 2px solid #82cfff;
+        }
+
+        .status-item {
+            color: #e0e0e0;
+            margin: 5px 0;
+        }
+
+        .stored {
+            color: green;
+        }
+
+        .empty {
+            color: red;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom style for the text paragraph input */
+        #textInput {
+            margin-top: 20px;
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            font-size: 16px;
+            color: #ffffff;
+            border: 1px solid #333;
+            outline: none;
+            resize: none;
+        }
+
+        #textInput:focus {
+            border-color: #82cfff;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Crafted Gamz Lite</h1>
+
+
+    <div id="localStorageStatus">
+        <h3>Explenation</h3>
+        <p>Crafted Gamz Lite, or CGL, is a lightweight loader that uses Local Storage to play games with no restrictions and offline. When you click "Add to local Storage", it pulls down HTML code from our Crafted Gamz servers and saves it in your local storage. When you click "run", it reads that HTML code from local storage and you can play the game. For Chromebook size restrictions, for now, you can only save two (2) games at a time.</p>
+        <h4>Local Storage Status</h4>
+        <div id="statusList"></div>
+    </div>
+
+    <div class="sections-container">
+        <!-- Sections will be generated dynamically here -->
+    </div>
+
+    <!-- Dev Mode Button at the bottom -->
+    <button id="devModeButton" onclick="toggleDevMode()">Enable Dev Mode</button>
+
+    <script>
+        // Custom section names
+        const sectionNames = [
+            "A Small World Cup", "Block Blast", "Basket Bros", "Death Run 3D", 
+            "FNAF 1", "Gun Spin", "Slope 1", "Slope II", "Snow Rider 3D", 
+            "Spacebar Clicker", "Goofy A$$ Temple Run", "The Binding Of Issac", 
+            "Tomb Of The Mask", "Core Ball", "Tanuki Sunset", "Dune"
+        ];
+
+        // Base URL for the predefined slots
+        const baseUrl = "https://www.cg-v2.com/CGL/slot-";
+
+        // Max slots allowed to be filled
+        const MAX_SLOTS = 2;
+
+        let devMode = false;  // Flag for Dev Mode
+
+        // Function to toggle Dev Mode
+        function toggleDevMode() {
+            devMode = !devMode;
+            document.getElementById('devModeButton').textContent = devMode ? 'Disable Dev Mode' : 'Enable Dev Mode';
+            updateSections();
+            updateStatus();
+        }
+
+        // Function to add HTML code to Local Storage from selected URL
+        function addToLocalStorage(section) {
+            const storedSlots = getFilledSlots();
+            if (storedSlots.length >= MAX_SLOTS) {
+                alert(`You can only fill up to ${MAX_SLOTS} slots.`);
+                return;
+            }
+
+            const selectedUrl = `${baseUrl}${section}.txt`;  // Construct the URL based on section number
+            fetch(selectedUrl)
+                .then(response => response.text())
+                .then(html => {
+                    localStorage.setItem(`sec.${section}`, html);
+                    alert(`Section "${sectionNames[section-1]}" HTML stored from URL: ${selectedUrl}`);
+                    updateStatus();
+                })
+                .catch(error => alert(`Error fetching the URL: ${error}`));
+        }
+
+        // Function to clear HTML code from Local Storage
+        function clearFromLocalStorage(section) {
+            localStorage.removeItem(`sec.${section}`);
+            localStorage.setItem(`sec.${section}`, 'empty');
+            alert(`Section "${sectionNames[section-1]}" HTML cleared from Local Storage.`);
+            updateStatus();
+        }
+
+        // Function to run the stored HTML from Local Storage
+        function runFromLocalStorage(section) {
+            const storedHTML = localStorage.getItem(`sec.${section}`);
+            if (storedHTML && storedHTML !== 'empty') {
+                const newWindow = window.open();
+                newWindow.document.write(storedHTML);
+                newWindow.document.close();
+            } else {
+                alert(`No HTML stored for Section "${sectionNames[section-1]}".`);
+            }
+        }
+
+        // Function to update the Local Storage status section
+        function updateStatus() {
+            const statusList = document.getElementById('statusList');
+            statusList.innerHTML = '';
+
+            for (let i = 1; i <= sectionNames.length; i++) {
+                const storedHTML = localStorage.getItem(`sec.${i}`);
+                const statusItem = document.createElement('div');
+                statusItem.classList.add('status-item');
+                
+                // Show section ID (sec-1, sec-2, etc.) if Dev Mode is active
+                const sectionLabel = devMode ? `sec.${i}` : sectionNames[i-1];
+
+                statusItem.textContent = `Section "${sectionLabel}": `;
+                const statusText = document.createElement('span');
+                statusText.classList.add(storedHTML && storedHTML !== 'empty' ? 'stored' : 'empty');
+                statusText.textContent = storedHTML && storedHTML !== 'empty' ? 'Stored' : 'Empty';
+                statusItem.appendChild(statusText);
+                statusList.appendChild(statusItem);
+            }
+        }
+
+        // Get all filled slots from Local Storage
+        function getFilledSlots() {
+            const filledSlots = [];
+            for (let i = 1; i <= sectionNames.length; i++) {
+                const storedHTML = localStorage.getItem(`sec.${i}`);
+                if (storedHTML && storedHTML !== 'empty') {
+                    filledSlots.push(i);
+                }
+            }
+            return filledSlots;
+        }
+
+        // Generate sections dynamically with animation and Dev Mode toggle
+        function updateSections() {
+            const sectionsContainer = document.querySelector('.sections-container');
+            sectionsContainer.innerHTML = '';  // Clear existing sections
+
+            for (let i = 1; i <= sectionNames.length; i++) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.classList.add('section');
+                sectionDiv.innerHTML = `
+                    <h2>${devMode ? `sec.${i}` : sectionNames[i-1]}</h2>
+                    <div>
+                        <button class="btn" onclick="addToLocalStorage(${i})">Add to Local Storage</button>
+                        <button class="btn" onclick="clearFromLocalStorage(${i})">Clear from Local Storage</button>
+                        <button class="btn" onclick="runFromLocalStorage(${i})">Run</button>
+                    </div>
+                `;
+                sectionsContainer.appendChild(sectionDiv);
+            }
+        }
+
+        // Initial setup
+        updateSections();
+        updateStatus();
+    </script>
+</body>
+</html>
