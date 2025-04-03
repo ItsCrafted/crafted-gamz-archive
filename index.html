@@ -93,7 +93,7 @@
   <script>
     // Check if the user has already read the TOS
     if (localStorage.getItem('read') === 'true') {
-      window.location.href = 'index3.html'; // Redirect if TOS has been accepted
+      window.location.href = 'index2.html'; // Redirect if TOS has been accepted
     }
 
     const continueBtn = document.getElementById('continue-btn');
@@ -112,7 +112,7 @@
     continueBtn.addEventListener('click', function() {
       if (tosCheckbox.checked) {
         localStorage.setItem('read', 'true'); // Save that the user has read the TOS
-        window.location.href = 'index3.html'; // Redirect to the desired page (e.g., home page)
+        window.location.href = 'index2.html'; // Redirect to the desired page (e.g., home page)
       }
     });
   </script>
